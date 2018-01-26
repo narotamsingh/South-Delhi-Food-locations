@@ -4,7 +4,6 @@ Project-V for the Udacity front-end nanodegree.
 --------
 This is map of south Delhi food locations, We get food location data from Foursquare, 
 it's mobile friendly so keep it saved on your phone!  
-***
 
 Installation
 --------
