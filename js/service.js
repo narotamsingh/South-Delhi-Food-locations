@@ -1,4 +1,4 @@
-// Foursquare Api Requests
+// Foursquare API Requests
 $.ajax({
     type: 'GET',
     url: 'https://api.foursquare.com/v2/venues/search',
