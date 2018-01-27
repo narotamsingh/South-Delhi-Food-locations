@@ -51,7 +51,7 @@ var ListViewModel = function (venues) {
         } else {
             console.log("List has been filtered to: " + self.currentFilter().value);
             hideMarkers(self.venues);
-            showMarkers((ko.utils.arrayFilter(self.venues, function (venue) {
+            showMarkers(ko.utils.arrayFilter(self.venues, function (venue) {
                 if (venue.categories[0].name === self.currentFilter().value) {
                     return true;
                 }
