@@ -46,7 +46,7 @@ var ListViewModel = function (venues) {
         } else if (self.currentFilter().name === "All") {
             console.log("All List");
             hideMarkers(self.venues);
-            showMarkers(self.venues)
+            showMarkers(self.venues);
             return self.locations(self.venues);
         } else {
             console.log("List has been filtered to: " + self.currentFilter().value);
