@@ -45,13 +45,13 @@ var ListViewModel = function (venues) {
             return self.locations(self.venues);
         } else if (self.currentFilter().name === "All") {
             console.log("All List");
-            deleteMarkers();
-            createMarkers(self.venues);
+            hideMarkers(self.venues);
+            showMarkers(self.venues)
             return self.locations(self.venues);
         } else {
             console.log("List has been filtered to: " + self.currentFilter().value);
-            deleteMarkers();
-            createMarkers(ko.utils.arrayFilter(self.venues, function (venue) {
+            hideMarkers(self.venues);
+            showMarkers((ko.utils.arrayFilter(self.venues, function (venue) {
                 if (venue.categories[0].name === self.currentFilter().value) {
                     return true;
                 }
@@ -94,29 +94,18 @@ function listItemClick(location) {
     if (!address) {
         address = "---";
     }
+    if (!url) {
+        url = "---";
+    }
     var infowindow = new google.maps.InfoWindow({
       content:"<b>Name:</b> " + name + "<br>" +
               "<b>Phone:</b> " + phone + "<br>" +
               "<b>Address:</b> " + address + "<br>" +
               "<b>Checkins:</b> " + count + "<br>" +
-              "<a href='" + url + "' title='Web Site'>Visit Web Site</a>"
+              "<b>Web Site:</b> " + url + ""
     });
     infoWindows.push(infowindow);
     infowindow.open(map, marker);
-}
-
-// Google Map-Initialize 
-var map;
-var markers = [];
-var infoWindows = [];
-function initMap() {
-
-    map = new google.maps.Map(document.getElementById("map"), {
-        center: {lat:28.592181, lng:77.219193},
-        zoom: 15,
-        disableDefaultUI:true
-    });
-
 }
 
 // Marker View Model
@@ -129,8 +118,21 @@ function createMarkers(locations) {
             title:locations[i].name
         });
         attachInfo(marker, locations[i]);
+        locations[i].marker = marker;
         markers.push(marker);
     }
+}
+
+function showMarkers(locations) {
+      locations.forEach(function(location) {
+          location.marker.setVisible(true);
+        });
+}
+
+function hideMarkers(locations) {
+      locations.forEach(function(location) {
+          location.marker.setVisible(false);
+        });
 }
 
 function setMapOnAll(map) {
@@ -169,7 +171,7 @@ function attachInfo(marker, location) {
                 "<b>Phone:</b> " + phone + "<br>" +
                 "<b>Address:</b> " + address + "<br>" +
                 "<b>Checkins:</b> " + count + "<br>" +
-                "<a href='" + url + "' title='Web Site'>Visit Web Site</a>"
+                "<b>Web Site:</b> " + url + ""
     });
     infoWindows.push(infowindow);
     marker.addListener("click", function () {
