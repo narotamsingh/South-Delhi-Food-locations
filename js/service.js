@@ -3,8 +3,8 @@ $.ajax({
     type: 'GET',
     url: 'https://api.foursquare.com/v2/venues/search',
     data: {
-        client_id: 'ZABT0OZ2YRIE5GSXO504XBQRN55C1E4AONN1DK0NUYYGPJA1',
-        client_secret: 'FVK2A1RSTDQ50Q4ZE20MUUN32JONXOTNLB31AR5EWOLBCNB4',
+        client_id: '',
+        client_secret: '',
         ll: '28.592181,77.219193',
         radius: 1100,
         v: '20170801',
